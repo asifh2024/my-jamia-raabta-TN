@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Firebase SDK (Modular) -->
+    <script type="module">
+      // Import Firebase functions
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js";
+      import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-auth.js";
+      import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-database.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAvqzeAAqb91PB035XGVaNVdKRiZrj-wbM",
+  authDomain: "jmi-raabta-auth.firebaseapp.com",
+  databaseURL: "https://jmi-raabta-auth-default-rtdb.firebaseio.com",
+  projectId: "jmi-raabta-auth",
+  storageBucket: "jmi-raabta-auth.firebasestorage.app",
+  messagingSenderId: "421817422315",
+  appId: "1:421817422315:web:75b2ca265064ee364689ae"
+};
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+      const database = getDatabase(app);
+
+      // Handle Register Form Submission
+      document.getElementById("register-form-element").addEventListener("submit", function(event) {
+          event.preventDefault(); // Prevent form submission
+
+          const name = document.getElementById("name").value;
+          const email = document.getElementById("email").value;
+          const gender = document.querySelector('input[name="gender"]:checked')?.value;
+          const role = document.getElementById("role").value;
+          const password = document.getElementById("password").value;
+
+          // Validate fields
+          if (!role || !gender || !password) {
+              alert("Please fill all required fields (gender, role, and password).");
+              return;
+          }
+
+          // Firebase Authentication (sign up)
+          createUserWithEmailAndPassword(auth, email, password)
+              .then((userCredential) => {
+                  const user = userCredential.user;
+
+                  // Store user data in Firebase Realtime Database
+                  const userData = {
+                      name: name,
+                      email: email,
+                      gender: gender,
+                      role: role
+                  };
+
+                  // Storing the data in Realtime Database
+                  const userRef = ref(database, 'users/' + user.uid);
+                  set(userRef, userData)
+                      .then(() => {
+                          console.log("User data stored successfully!");
+                          redirectBasedOnRole(role);
+                      })
+                      .catch(error => {
+                          console.error("Error storing user data: ", error);
+                      });
+
+              })
+              .catch(error => {
+                  console.error("Error signing up: ", error.message);
+                  alert(error.message); // Show the error message to the user
+              });
+      });
+
+      // Redirect based on user role
+      function redirectBasedOnRole(role) {
+          if (role === "student") {
+              window.location.href = "student.html";
+          } else if (role === "alumni") {
+              window.location.href = "alumni.html";
+          } else if (role === "teaching_staff") {
+              window.location.href = "teaching_staff.html";
+          } else if (role === "non_teaching_staff") {
+              window.location.href = "non_teaching_staff.html";
+          }
+      }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <!-- Register Form -->
+        <div class="form-container">
+            <h2 style="color: white;">Register</h2>
+            <form id="register-form-element">
+                <!-- Name -->
+                <div class="input-group">
+                    <input type="text" id="name" placeholder="Full Name" required>
+                </div>
+
+                <!-- Email -->
+                <div class="input-group">
+                    <input type="email" id="email" placeholder="Email" required>
+                </div>
+
+                <!-- Gender -->
+                <div class="input-group gender-options" style="color: white;">
+                    <label>Gender:</label>
+                    <input type="radio" id="male" name="gender" value="Male" required><span>Male</span>
+                    <input type="radio" id="female" name="gender" value="Female" required><span>Female</span>
+                    <input type="radio" id="other" name="gender" value="Other" required><span>Other</span>
+                </div>
+
+                <!-- Role -->
+                <div class="input-group">
+                    <label for="role">Role:</label>
+                    <select id="role" required>
+                        <option value="" disabled selected>Select Role</option>
+                        <option value="student">Student</option>
+                        <option value="alumni">Alumni</option>
+                        <option value="teaching_staff">Teaching Staff</option>
+                        <option value="non_teaching_staff">Non-Teaching Staff</option>
+                    </select>
+                </div>
+                
+                <!-- Password -->
+                <div class="input-group">
+                    <input type="password" id="password" placeholder="Create Password" required>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="input-group">
+                    <button type="submit">Register</button>
+                </div>
+
+                <!-- Switch to Login Link -->
+                <div class="switch-link">
+                    <p style="color: white;">Already have an account? <a href="login.html">Log in</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

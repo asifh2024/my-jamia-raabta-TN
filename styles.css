@@ -1,0 +1,110 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-image: url(images/bg_image.jpg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px;
+    background-color: none;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  
+}
+
+.form-container {
+    width: 100%;
+}
+
+/* Header */
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2rem;
+    color: #333;
+}
+
+/* Input and Select Styling */
+.input-group {
+    margin-bottom: 20px;
+}
+
+input, select, button {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    margin: 0;
+    transition: all 0.3s ease-in-out;
+}
+
+input:focus, select:focus, button:focus {
+    border-color: #4CAF50;
+}
+
+input[type="radio"] {
+    width: auto;
+    margin-right: 10px;
+}
+
+input[type="radio"]:checked {
+    background-color: #4CAF50;
+}
+
+/* Button Styling */
+button {
+    background-color: #e65eae;
+    color: white;
+    cursor: pointer;
+    border: none;
+}
+
+button:hover {
+    background-color: #d11783;
+}
+
+/* Switch Link Styling */
+.switch-link {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 1rem;
+}
+
+.switch-link a {
+    color: #e65eae;
+    text-decoration: none;
+}
+
+.switch-link a:hover {
+    text-decoration: underline;
+    color: #d11783;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 600px) {
+    .container {
+        padding: 20px;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+    }
+}

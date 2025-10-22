@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>alumni</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 60px 20px;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #e0f7fa, #ffffff);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h2 {
+      font-size: 40px;
+      margin-bottom: 60px;
+      color: #222;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 80px 100px; /* Big vertical and horizontal spacing */
+      max-width: 800px;
+      width: 100%;
+      justify-items: center;
+    }
+
+    .card {
+      text-align: center;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .card img {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover img {
+      transform: scale(1.08);
+    }
+
+    .card p {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #333;
+    }
+
+    @media (max-width: 600px) {
+      .grid {
+        grid-template-columns: 1fr;
+        gap: 50px;
+      }
+
+      .card img {
+        width: 140px;
+        height: 140px;
+      }
+
+      .card p {
+        font-size: 16px;
+      }
+
+      h2 {
+        font-size: 32px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Welcome to My JMI Raabta</h2>
+
+  <div class="grid">
+    <div class="card" onclick="alert('Coming soon😍')">
+      <img src="images/news achievement.jpg" alt="Image 1">
+      <p>NEWS & ACHIEVEMENTS</p>
+    </div>
+    <div class="card" onclick="alert('Coming soon😍')">
+      <img src="images/opportunity.jpg" alt="Image 2">
+      <p>CAREER OPPORTUNITIES / MENTORSHIP</p>
+    </div>
+    <div class="card" onclick="alert('Coming soon😍')">
+      <img src="images/feedback.jpg" alt="Image 3">
+      <p>FEEDBACK TO UNIVERSITY</p>
+    </div>
+    <div class="card" onclick="alert('Coming soon😍')">
+      <img src="images/chat room.jpg" alt="Image 4">
+      <p>CHAT ROOM</p>
+    </div>
+  </div>
+
+</body>
+</html>
