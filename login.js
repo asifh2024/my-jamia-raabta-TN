@@ -41,7 +41,7 @@ document.getElementById("login-form").addEventListener("submit", function (event
         })
         .catch((error) => {
             console.error("Error logging in:", error.message);
-            alert(error.message);
+            alert(.message);
         });
 });
 
@@ -83,3 +83,4 @@ function redirectBasedOnRole(role) {
             alert("Unknown role, please contact support.");
     }
 }
+
